@@ -314,13 +314,11 @@ class Php extends GeoIp2
             return true;
         }
 
-        // try converting umlauts to closted ascii char if intl is available
+        // try converting umlauts to closted ascii char if intl or iconv is available
         if (function_exists('transliterator_transliterate')) {
             $str1 = transliterator_transliterate('Any-Latin; Latin-ASCII', $str1);
             $str1 = transliterator_transliterate('Any-Latin; Latin-ASCII', $str2);
-        }
-        // try converting umlauts to closted ascii char if iconv is available
-        else if (function_exists('iconv')) {
+        } elseif (function_exists('iconv')) {
             $str1 = iconv('UTF-8', 'ASCII//TRANSLIT', $str1);
             $str2 = iconv('UTF-8', 'ASCII//TRANSLIT', $str2);
         }

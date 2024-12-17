@@ -314,7 +314,7 @@ class Php extends GeoIp2
             return true;
         }
 
-        // try converting umlauts to closted ascii char if intl or iconv is available
+        // try converting umlauts to the closest ascii char if intl or iconv is available
         if (function_exists('transliterator_transliterate')) {
             $str1 = transliterator_transliterate('Any-Latin; Latin-ASCII', $str1);
             $str1 = transliterator_transliterate('Any-Latin; Latin-ASCII', $str2);
